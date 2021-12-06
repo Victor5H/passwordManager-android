@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_atoz"
+        android:title="A->Z"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_ztoa"
+        android:title="Z->A"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ascend"
+        android:title="ID DB Ascending"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/descend"
+        android:title="ID DB Descending"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/search_by"
+        android:icon="@drawable/ic_baseline_more"
+        android:title="search by"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:id="@+id/search_by_grp"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/search_by_tag"
+                    android:checked="true"
+                    android:icon="@drawable/ic_baseline_more"
+                    android:title="Search by Tag" />
+                <item
+                    android:id="@+id/search_by_ID"
+                    android:icon="@drawable/ic_baseline_id"
+                    android:title="Search by ID" />
+            </group>
+        </menu>
+    </item>
+</menu>
