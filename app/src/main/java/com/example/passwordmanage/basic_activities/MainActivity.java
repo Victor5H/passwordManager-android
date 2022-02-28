@@ -1,4 +1,6 @@
 package com.example.passwordmanage.basic_activities;
+
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -7,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import com.example.passwordmanage.R;
 import com.example.passwordmanage.RecyclerViewAdapter;
 import com.example.passwordmanage.models.Entries_Model;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     CustomHelper customHelper;
     List<Entries_Model> list = new ArrayList<Entries_Model>();
     Context context;
-    boolean isEmpty = false,searchByTag=true;
+    boolean isEmpty = false, searchByTag = true;
     Toolbar toolbar;
     Menu m1;
     BiometricManager biometricManager;
@@ -58,17 +62,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Window window = getWindow();
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        // Attach a callback used to capture the shared elements from this Activity to be used
+        // by the container transform transition
+        setExitSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+        window.setSharedElementsUseOverlay(false);
+
         setContentView(R.layout.activity_main);
+
+
         fab = findViewById(R.id.floatingActionButton);
-        tv_empty=findViewById(R.id.tv_empty);
+        tv_empty = findViewById(R.id.tv_empty);
         tv_empty.setVisibility(View.GONE);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        context=MainActivity.this;
+        context = MainActivity.this;
         customHelper = new CustomHelper(context);
         fab.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, Insert_d.class);
-            startActivity(i);
+            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this,fab,"shared_element_container").toBundle());
         });
         initBiometricManager();
         initRecyclerView();
@@ -84,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
-    
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,10 +112,9 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(searchByTag) {
+                if (searchByTag) {
                     searchView.setQueryHint("Search by tag");
-                }
-                else {
+                } else {
                     searchView.setQueryHint("Search by ID");
                 }
             }
@@ -109,18 +122,17 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(searchByTag) {
+                if (searchByTag) {
                     list = customHelper.searchByTag(query);
                     rva = new RecyclerViewAdapter(list, MainActivity.this);
                     rv.setAdapter(rva);
-                }
-                else{
+                } else {
                     list = customHelper.searchByID(query);
                     rva = new RecyclerViewAdapter(list, MainActivity.this);
                     rv.setAdapter(rva);
                 }
 
-                if(list.isEmpty()){
+                if (list.isEmpty()) {
                     Balloon balloon = new Balloon.Builder(context)
                             .setArrowSize(10)
                             .setArrowOrientation(ArrowOrientation.TOP)
@@ -143,12 +155,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(searchByTag) {
+                if (searchByTag) {
                     list = customHelper.searchByCharTag(newText);
                     rva = new RecyclerViewAdapter(list, MainActivity.this);
                     rv.setAdapter(rva);
-                }
-                else{
+                } else {
                     list = customHelper.searchByCharID(newText);
                     rva = new RecyclerViewAdapter(list, MainActivity.this);
                     rv.setAdapter(rva);
@@ -181,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        String id=String.valueOf(item.getItemId());
+        String id = String.valueOf(item.getItemId());
         //Toast.makeText(MainActivity.this, id, Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case R.id.menu_atoz:
@@ -228,10 +239,9 @@ public class MainActivity extends AppCompatActivity {
         rva = new RecyclerViewAdapter(list, MainActivity.this);
         rv.setAdapter(rva);
         isEmpty = list.isEmpty();
-        if(isEmpty){
+        if (isEmpty) {
             tv_empty.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             tv_empty.setVisibility(View.GONE);
         }
 

@@ -1,9 +1,11 @@
 package com.example.passwordmanage.basic_activities;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -14,6 +16,8 @@ import com.example.passwordmanage.CustomHelper;
 import com.example.passwordmanage.R;
 import com.example.passwordmanage.models.Entries_Model;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.transition.platform.MaterialContainerTransform;
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
@@ -29,12 +33,23 @@ public class Insert_d extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        Window window = getWindow();
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+
+        findViewById(android.R.id.content).setTransitionName("shared_element_container");
+        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(R.id.insertAct).setDuration(500L));
+        window.setSharedElementExitTransition(new MaterialContainerTransform().addTarget(R.id.insertAct).setDuration(500L));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
         name = findViewById(R.id.editTextTextPersonName);
         password = findViewById(R.id.editTextTextPersonName2);
         tag = findViewById(R.id.autoCompleteTextView);
-        tag.setAutofillHints();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            tag.setAutofillHints();
+        }
         ins = findViewById(R.id.button);
         context = getApplicationContext();
         Entries_Model em = new Entries_Model();

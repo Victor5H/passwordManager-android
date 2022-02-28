@@ -178,6 +178,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.imageView.setImageResource(R.drawable.educative);
         } else if (etc.contains("voot")) {
             holder.imageView.setImageResource(R.drawable.voot);
+            holder.imageView.setImageResource(R.drawable.voot);
         } else {
             holder.tag.setVisibility(View.GONE);
             holder.imageView.setVisibility(View.INVISIBLE);

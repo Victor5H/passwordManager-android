@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
+    android:id="@+id/layout"
     tools:context=".basic_activities.MainActivity">
 
     <include
@@ -51,6 +52,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#6E6A68"
         android:clickable="true"
+        android:transitionName="shared_element_container"
         android:contentDescription="-"
         app:backgroundTint="#6E6A68"
         app:layout_constraintBottom_toBottomOf="parent"
