@@ -158,8 +158,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.imageView.setImageResource(R.drawable.zee5);
         } else if (etc.contains("upi")) {
             holder.imageView.setImageResource(R.drawable.upi);
-        } else if (etc.contains("bank of baroda")) {
-            holder.imageView.setImageResource(R.drawable.bankofbar);
+        } else if (etc.contains("bank of baroda") || etc.contains("bob")) {
+            holder.imageView.setImageResource(R.drawable.bob);
         } else if (etc.contains("xbox")) {
             holder.imageView.setImageResource(R.drawable.xbox);
         } else if (etc.contains("playstation")) {
@@ -178,14 +178,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.imageView.setImageResource(R.drawable.educative);
         } else if (etc.contains("voot")) {
             holder.imageView.setImageResource(R.drawable.voot);
-        }else if (etc.contains("accenture")) {
+        } else if (etc.contains("accenture")) {
             holder.imageView.setImageResource(R.drawable.accenture);
-        }else if (etc.contains("w3schools")) {
+        } else if (etc.contains("w3schools")) {
             holder.imageView.setImageResource(R.drawable.w3schools);
-        }else if (etc.contains("codeforces") || etc.contains("code forces")) {
+        } else if (etc.contains("codeforces") || etc.contains("code forces")) {
             holder.imageView.setImageResource(R.drawable.codeforces);
-        }else if (etc.contains("codechef")||etc.contains("code chef")) {
+        } else if (etc.contains("codechef") || etc.contains("code chef")) {
             holder.imageView.setImageResource(R.drawable.codechef);
+        } else if (etc.contains("income tax")) {
+            holder.imageView.setImageResource(R.drawable.income_tax);
+        } else if (etc.contains("syska")) {
+            holder.imageView.setImageResource(R.drawable.syska);
+        } else if (etc.contains("hacker rank") || etc.contains("hackerrank")) {
+            holder.imageView.setImageResource(R.drawable.hackerrank);
+        } else if (etc.contains("wazirx")) {
+            holder.imageView.setImageResource(R.drawable.wazirx);
+        } else if (etc.contains("persistent")) {
+            holder.imageView.setImageResource(R.drawable.persistent);
         } else {
             holder.tag.setVisibility(View.GONE);
             holder.imageView.setVisibility(View.INVISIBLE);
