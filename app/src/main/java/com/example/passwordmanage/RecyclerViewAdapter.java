@@ -196,6 +196,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.imageView.setImageResource(R.drawable.wazirx);
         } else if (etc.contains("persistent")) {
             holder.imageView.setImageResource(R.drawable.persistent);
+        }else if (etc.contains("leetcode")|| etc.contains("leet code")) {
+            holder.imageView.setImageResource(R.drawable.leetcode);
         } else {
             holder.tag.setVisibility(View.GONE);
             holder.imageView.setVisibility(View.INVISIBLE);
