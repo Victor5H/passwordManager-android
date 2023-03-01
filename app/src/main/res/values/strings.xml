@@ -4,7 +4,7 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="show">REVEAL</string>
     <string name="insert">INSERT</string>
-    <string name="update">UPDATE</string>
+    <string name="update">MODIFY</string>
     <string name="del">DELETE</string>
     <string name="name">Name</string>
     <string name="password">Password</string>

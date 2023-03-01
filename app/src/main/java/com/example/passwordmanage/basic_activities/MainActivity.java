@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         customHelper = new CustomHelper(context);
         fab.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, Insert_d.class);
-            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this,fab,"shared_element_container").toBundle());
+            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this, fab, "shared_element_container").toBundle());
         });
         initBiometricManager();
         initRecyclerView();

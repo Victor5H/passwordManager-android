@@ -213,6 +213,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(v -> {
             Intent i = new Intent(context, Updat.class);
             i.putExtra("id", list_em.get(position).getId());
+            i.putExtra("name",list_em.get(position).getName());
+            i.putExtra("tag",list_em.get(position).getTag());
             context.startActivity(i);
         });
 //        holder.parentLayout.setLongClickable(true);
