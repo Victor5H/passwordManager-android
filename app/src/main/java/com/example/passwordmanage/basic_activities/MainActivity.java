@@ -213,13 +213,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.search_by_tag:
                 item.setChecked(true);
-                Toast.makeText(MainActivity.this, "tag", Toast.LENGTH_SHORT).show();
                 searchByTag = true;
                 searchBy.setIcon(R.drawable.ic_baseline_more);
                 break;
             case R.id.search_by_ID:
                 item.setChecked(true);
-                Toast.makeText(MainActivity.this, "id", Toast.LENGTH_SHORT).show();
                 searchByTag = false;
                 searchBy.setIcon(R.drawable.ic_baseline_id);
                 break;

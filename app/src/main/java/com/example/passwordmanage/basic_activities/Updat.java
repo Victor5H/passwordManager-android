@@ -27,8 +27,7 @@ public class Updat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updat);
-        String Sname,Stag;
-        id = findViewById(R.id.editTextTextPersonName4);
+        String Sname, Stag;
         name = findViewById(R.id.editTextTextPersonName5);
         word = findViewById(R.id.editTextTextPersonName6);
         tag = findViewById(R.id.editTextTextPersonName8);
@@ -41,15 +40,13 @@ public class Updat extends AppCompatActivity {
         name.setText(Sname);
         Stag = intent.getExtras().getString("tag");
         tag.setText(Stag);
-        id.setText(String.valueOf(idi));
-        id.setEnabled(false);
         ch = new CustomHelper(this);
         Context context = this.getApplicationContext();
         delete.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.custom_alert);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.custom_alert);
             builder.setMessage("Confirm delete ?");
             builder.setIcon(R.drawable.ic_baseline_delete);
-            builder.setTitle("Delete \""+Stag+"\"");
+            builder.setTitle("Delete \"" + Stag + "\"");
 
             builder.setCancelable(false);
             builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
@@ -57,7 +54,6 @@ public class Updat extends AppCompatActivity {
                     // User clicked OK button
                     ch.delete(idi);
                     finish();
-
                 }
             });
             builder.setNegativeButton("Decline", new DialogInterface.OnClickListener() {

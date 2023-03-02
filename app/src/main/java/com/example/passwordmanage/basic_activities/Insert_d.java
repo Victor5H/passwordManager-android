@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat;
 import com.example.passwordmanage.CustomHelper;
 import com.example.passwordmanage.R;
 import com.example.passwordmanage.models.Entries_Model;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.platform.MaterialContainerTransform;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 import com.skydoves.balloon.ArrowOrientation;
@@ -24,6 +23,8 @@ import com.skydoves.balloon.BalloonAnimation;
 import com.skydoves.balloon.OnBalloonClickListener;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Insert_d extends AppCompatActivity {
     EditText name, password, tag;
@@ -44,6 +45,7 @@ public class Insert_d extends AppCompatActivity {
         name = findViewById(R.id.editTextTextPersonName);
         password = findViewById(R.id.editTextTextPersonName2);
         tag = findViewById(R.id.autoCompleteTextView);
+        AtomicBoolean flag = new AtomicBoolean(false);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             tag.setAutofillHints();
         }
@@ -51,23 +53,21 @@ public class Insert_d extends AppCompatActivity {
         context = getApplicationContext();
         Entries_Model em = new Entries_Model();
         ins.setOnClickListener(v -> {
-
             em.setName(name.getText().toString());
             em.setWord(password.getText().toString());
             em.setTag(tag.getText().toString());
             if (em.getName().length() != 0 && em.getWord().length() != 0 && em.getTag().length() != 0) {
+                CustomHelper ch = new CustomHelper(Insert_d.this);
+                long ret = ch.add(em);
+                flag.set(true);
                 name.setText("");
                 password.setText("");
                 tag.setText("");
-                CustomHelper ch = new CustomHelper(Insert_d.this);
-                long ret = ch.add(em);
                 Log.d(TAG, "onCreate: inserted at " + ret);
                 View parentLayout;
                 parentLayout = findViewById(android.R.id.content);
-                Snackbar.make(parentLayout, "Inserted at " + ret, Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
             }
-            if (name.getText().length() == 0) {
+            if (name.getText().length() == 0 && !flag.get()) {
                 Balloon balloon = new Balloon.Builder(context)
                         .setArrowSize(10)
                         .setArrowOrientation(ArrowOrientation.LEFT)
@@ -91,7 +91,7 @@ public class Insert_d extends AppCompatActivity {
                     }
                 });
             }
-            if (tag.getText().length() == 0) {
+            if (tag.getText().length() == 0 && !flag.get()) {
                 Balloon balloon = new Balloon.Builder(context)
                         .setArrowSize(10)
                         .setArrowOrientation(ArrowOrientation.LEFT)
@@ -115,7 +115,7 @@ public class Insert_d extends AppCompatActivity {
                     }
                 });
             }
-            if (password.getText().length() == 0) {
+            if (password.getText().length() == 0 && !flag.get()) {
                 Balloon balloon = new Balloon.Builder(context)
                         .setArrowSize(10)
                         .setArrowOrientation(ArrowOrientation.LEFT)
