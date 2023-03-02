@@ -33,11 +33,8 @@ public class Insert_d extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         Window window = getWindow();
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
-
         findViewById(android.R.id.content).setTransitionName("shared_element_container");
         setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
         window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(R.id.insertAct).setDuration(500L));
@@ -54,10 +51,14 @@ public class Insert_d extends AppCompatActivity {
         context = getApplicationContext();
         Entries_Model em = new Entries_Model();
         ins.setOnClickListener(v -> {
+
             em.setName(name.getText().toString());
             em.setWord(password.getText().toString());
             em.setTag(tag.getText().toString());
             if (em.getName().length() != 0 && em.getWord().length() != 0 && em.getTag().length() != 0) {
+                name.setText("");
+                password.setText("");
+                tag.setText("");
                 CustomHelper ch = new CustomHelper(Insert_d.this);
                 long ret = ch.add(em);
                 Log.d(TAG, "onCreate: inserted at " + ret);

@@ -35,13 +35,7 @@ public class Entries_Model {
         }
     };
 
-    public static Comparator<Entries_Model> EntriesAscendIDcomparator = new Comparator<Entries_Model>() {
-        @Override
-        public int compare(Entries_Model e1, Entries_Model e2) {
-
-            return e1.getId() - e2.getId();
-        }
-    };
+    public static Comparator<Entries_Model> EntriesAscendIDcomparator = (e1, e2) -> e1.getId() - e2.getId();
     public static Comparator<Entries_Model> EntriesDescendIDcomparator = new Comparator<Entries_Model>() {
         @Override
         public int compare(Entries_Model e1, Entries_Model e2) {

@@ -217,34 +217,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             i.putExtra("tag",list_em.get(position).getTag());
             context.startActivity(i);
         });
-//        holder.parentLayout.setLongClickable(true);
-//        holder.parentLayout.setOnLongClickListener(v->{
-//            AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-//            builder1.setMessage("Delete this entry?");
-//            builder1.setCancelable(true);
-//            String t = Integer.toString(list_em.get(position).getId());
-//            int idi=Integer.parseInt(t);
-//            builder1.setPositiveButton(
-//                    "Yes",
-//                    new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            Toast.makeText(context, t, Toast.LENGTH_SHORT).show();
-//                            CustomHelper ch = new CustomHelper(context);
-//                            ch.delete(idi);
-//                        }
-//                    });
-//            builder1.setNegativeButton(
-//                    "No",
-//                    new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            dialog.cancel();
-//                        }
-//                    });
-//
-//            AlertDialog alert11 = builder1.create();
-//            alert11.show();
-//            return false;
-//        });
     }
 
 
