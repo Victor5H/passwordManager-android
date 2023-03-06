@@ -1,6 +1,7 @@
 package com.example.passwordmanage.basic_activities;
 
 import android.app.ActivityOptions;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_empty;
     SearchView searchView;
     MenuItem searchBy;
+    ClipboardManager clipboardManager;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-
+        clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         fab = findViewById(R.id.floatingActionButton);
         tv_empty = findViewById(R.id.tv_empty);
         tv_empty.setVisibility(View.GONE);
@@ -124,11 +126,11 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 if (searchByTag) {
                     list = customHelper.searchByTag(query);
-                    rva = new RecyclerViewAdapter(list, MainActivity.this);
+                    rva = new RecyclerViewAdapter(list, MainActivity.this,clipboardManager);
                     rv.setAdapter(rva);
                 } else {
                     list = customHelper.searchByID(query);
-                    rva = new RecyclerViewAdapter(list, MainActivity.this);
+                    rva = new RecyclerViewAdapter(list, MainActivity.this,clipboardManager);
                     rv.setAdapter(rva);
                 }
 
@@ -157,11 +159,11 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 if (searchByTag) {
                     list = customHelper.searchByCharTag(newText);
-                    rva = new RecyclerViewAdapter(list, MainActivity.this);
+                    rva = new RecyclerViewAdapter(list, MainActivity.this,clipboardManager);
                     rv.setAdapter(rva);
                 } else {
                     list = customHelper.searchByCharID(newText);
-                    rva = new RecyclerViewAdapter(list, MainActivity.this);
+                    rva = new RecyclerViewAdapter(list, MainActivity.this,clipboardManager);
                     rv.setAdapter(rva);
                 }
                 return true;
@@ -234,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
         rv.setHasFixedSize(true);
         rvl = new LinearLayoutManager(this);
         rv.setLayoutManager(rvl);
-        rva = new RecyclerViewAdapter(list, MainActivity.this);
+        rva = new RecyclerViewAdapter(list, MainActivity.this,clipboardManager);
         rv.setAdapter(rva);
         isEmpty = list.isEmpty();
         if (isEmpty) {

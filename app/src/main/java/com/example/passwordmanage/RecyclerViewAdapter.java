@@ -1,5 +1,6 @@
 package com.example.passwordmanage;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -22,10 +23,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     List<Entries_Model> list_em;
     Context context;
     private static final String TAG = "RecyclerViewAdapter";
+    ClipboardManager clipboardManager;
 
-    public RecyclerViewAdapter(List<Entries_Model> list_em, Context context) {
+    public RecyclerViewAdapter(List<Entries_Model> list_em, Context context, ClipboardManager clipboardManager) {
         this.list_em = list_em;
         this.context = context;
+        this.clipboardManager = clipboardManager;
     }
 
     @NonNull
@@ -205,12 +208,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.imageView.setImageResource(R.drawable.oracle);
         }else if (etc.contains("asus")) {
             holder.imageView.setImageResource(R.drawable.asus);
+        }
+        else if (etc.contains("jira")) {
+            holder.imageView.setImageResource(R.drawable.jira);
         }else {
             holder.tag.setVisibility(View.GONE);
             holder.imageView.setVisibility(View.INVISIBLE);
             holder.logo.setVisibility(View.VISIBLE);
             holder.logo.setText(tag);
         }
+        holder.parentLayout.setLongClickable(true);
+        holder.parentLayout.setOnLongClickListener(view -> {
+            clipboardManager.setText(list_em.get(position).getWord());
+            Toast.makeText(context, list_em.get(position).getTag()+" password copied", Toast.LENGTH_SHORT).show();
+            return true;
+        });
         holder.parentLayout.setOnClickListener(v -> {
             Intent i = new Intent(context, Updat.class);
             i.putExtra("id", list_em.get(position).getId());

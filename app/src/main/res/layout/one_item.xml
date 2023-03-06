@@ -60,7 +60,6 @@
         android:fontFamily="@font/firasans_regular"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textIsSelectable="true"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +70,7 @@
         android:id="@+id/textView_Preword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/firasans_regular"
         android:textAlignment="center"
@@ -81,7 +80,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Word"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="TextView" />
 
     <TextView
@@ -115,13 +115,12 @@
         android:id="@+id/divider"
         android:layout_width="200dp"
         android:layout_height="1dp"
+        android:layout_marginTop="12dp"
         android:background="@color/divider2"
-        app:layout_constraintBottom_toTopOf="@+id/textView_Preword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Word"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_Word" />
 
     <View
         android:id="@+id/divider3"
