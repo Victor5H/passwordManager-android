@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                 super.onAuthenticationFailed();
             }
         });
-        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("Touch sensor to gain access").setNegativeButtonText("Cancel").build();
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("Authorize to gain access").setNegativeButtonText("Cancel").build();
         biometricPrompt.authenticate(promptInfo);
     }
 

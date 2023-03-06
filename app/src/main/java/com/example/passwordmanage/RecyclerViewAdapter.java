@@ -40,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         String etc = "", id = "ID: ", pass = "Password: ", pre = "Previous password: ", preword = null, word = null;
         holder.name.setText(id + list_em.get(position).getName());
         word = list_em.get(position).getWord();

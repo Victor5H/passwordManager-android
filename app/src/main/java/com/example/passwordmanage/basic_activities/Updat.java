@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class Updat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updat);
+        View parentLayout;
+        parentLayout = findViewById(android.R.id.content);
         String Sname, Stag;
         name = findViewById(R.id.editTextTextPersonName5);
         word = findViewById(R.id.editTextTextPersonName6);
@@ -51,8 +54,9 @@ public class Updat extends AppCompatActivity {
             builder.setCancelable(false);
             builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    // User clicked OK button
+
                     ch.delete(idi);
+                    Toast.makeText(context, "Password Deleted", Toast.LENGTH_LONG).show();
                     finish();
                 }
             });
@@ -67,7 +71,7 @@ public class Updat extends AppCompatActivity {
 
         update.setOnClickListener(v -> {
             String i, n, p, t;
-            i = id.getText().toString();
+            i = String.valueOf(idi);
             entries_model.setId(Integer.parseInt(i));
             n = name.getText().toString();
             entries_model.setName(n);
@@ -78,19 +82,16 @@ public class Updat extends AppCompatActivity {
             if (i.length() != 0 && n.length() != 0 && p.length() != 0 && t.length() != 0) {
                 int ret = ch.update(entries_model);
                 if (ret == 1) {
-                    View parentLayout;
-                    parentLayout = findViewById(android.R.id.content);
-                    Snackbar.make(parentLayout, "Successful" + ret, Snackbar.LENGTH_SHORT)
+
+                    Snackbar.make(parentLayout, "Update Successful", Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
                 } else {
-                    View parentLayout;
-                    parentLayout = findViewById(android.R.id.content);
-                    Snackbar.make(parentLayout, "Unsuccessful" + ret, Snackbar.LENGTH_SHORT)
+
+                    Snackbar.make(parentLayout, "Update Unsuccessful", Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
                 }
             } else {
-                View parentLayout;
-                parentLayout = findViewById(android.R.id.content);
+
                 Snackbar.make(parentLayout, "Enter Something", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }

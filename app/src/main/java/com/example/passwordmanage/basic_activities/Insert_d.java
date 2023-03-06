@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import com.example.passwordmanage.CustomHelper;
 import com.example.passwordmanage.R;
 import com.example.passwordmanage.models.Entries_Model;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.platform.MaterialContainerTransform;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 import com.skydoves.balloon.ArrowOrientation;
@@ -59,13 +60,15 @@ public class Insert_d extends AppCompatActivity {
             if (em.getName().length() != 0 && em.getWord().length() != 0 && em.getTag().length() != 0) {
                 CustomHelper ch = new CustomHelper(Insert_d.this);
                 long ret = ch.add(em);
+                View parentLayout;
+                parentLayout = findViewById(android.R.id.content);
+                Snackbar.make(parentLayout, "Inserted", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
                 flag.set(true);
                 name.setText("");
                 password.setText("");
                 tag.setText("");
                 Log.d(TAG, "onCreate: inserted at " + ret);
-                View parentLayout;
-                parentLayout = findViewById(android.R.id.content);
             }
             if (name.getText().length() == 0 && !flag.get()) {
                 Balloon balloon = new Balloon.Builder(context)
