@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passwordmanage.basic_activities.Updat;
 import com.example.passwordmanage.models.Entries_Model;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -220,7 +221,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setLongClickable(true);
         holder.parentLayout.setOnLongClickListener(view -> {
             clipboardManager.setText(list_em.get(position).getWord());
-            Toast.makeText(context, list_em.get(position).getTag()+" password copied", Toast.LENGTH_SHORT).show();
+            Snackbar.make(holder.parentLayout, list_em.get(position).getTag().toUpperCase()+" password copied", Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
             return true;
         });
         holder.parentLayout.setOnClickListener(v -> {
